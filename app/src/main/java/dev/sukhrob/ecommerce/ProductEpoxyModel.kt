@@ -8,7 +8,6 @@ import dev.sukhrob.ecommerce.databinding.ItemEpoxyModelProductBinding
 import dev.sukhrob.ecommerce.epoxy.ViewBindingKotlinModel
 import java.text.NumberFormat
 
-
 data class ProductEpoxyModel(
     val uiProduct: UiProduct?,
     val onFavoriteIconClicked: (Int) -> Unit
@@ -49,5 +48,4 @@ data class ProductEpoxyModel(
 
         } ?: shimmerLayout.startShimmer()
     }
-
 }

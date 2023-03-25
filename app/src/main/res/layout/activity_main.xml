@@ -7,21 +7,26 @@
     android:background="@color/purple_100"
     tools:context=".MainActivity">
 
-    <com.airbnb.epoxy.EpoxyRecyclerView
-        android:id="@+id/epoxyRecyclerView"
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:clipChildren="false"
-        android:orientation="vertical"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="8dp"
-        app:itemSpacing="16dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="7"
-        tools:listitem="@layout/item_epoxy_model_product" />
+        app:navGraph="@navigation/nav_graph" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>
