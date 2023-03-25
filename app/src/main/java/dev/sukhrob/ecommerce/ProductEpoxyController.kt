@@ -1,18 +1,23 @@
 package dev.sukhrob.ecommerce
 
 import com.airbnb.epoxy.TypedEpoxyController
-import dev.sukhrob.ecommerce.model.domain.Product
 
-class ProductEpoxyController: TypedEpoxyController<List<Product>>() {
+class ProductEpoxyController(
+    private val onFavoriteIconClicked: (Int) -> Unit
+) : TypedEpoxyController<List<UiProduct>>() {
 
-    override fun buildModels(data: List<Product>?) {
-        if (data == null || data.isEmpty()) {
-            // loading
+    override fun buildModels(data: List<UiProduct>?) {
+        if (data.isNullOrEmpty()) {
+            repeat(7) {
+                val epoxyId = it + 1
+                ProductEpoxyModel(uiProduct = null, onFavoriteIconClicked).id(epoxyId).addTo(this)
+            }
             return
         }
 
-        data.forEach {product ->
-            ProductEpoxyModel(product).id(product.id).addTo(this)
+        data.forEach { uiProduct ->
+            ProductEpoxyModel(uiProduct, onFavoriteIconClicked).id(uiProduct.product.id)
+                .addTo(this)
         }
     }
 }
